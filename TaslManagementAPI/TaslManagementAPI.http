@@ -1,0 +1,6 @@
+@TaslManagementAPI_HostAddress = http://localhost:5211
+
+GET {{TaslManagementAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
