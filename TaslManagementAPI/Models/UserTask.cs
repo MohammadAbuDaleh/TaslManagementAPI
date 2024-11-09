@@ -1,4 +1,6 @@
-﻿namespace TaslManagementAPI.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace TaslManagementAPI.Models
 {
     public class UserTask
     {
@@ -8,7 +10,8 @@
         public int Status { get; set; } 
         public int Priority { get; set; } 
         public DateTime DueDate { get; set; }
+        public DateTime CreationDate { get; set; }= DateTime.Now;
         public string UserId { get; set; }
-        public ApplicationUser User { get; set; }
+        public User User { get; set; }
     }
 }
