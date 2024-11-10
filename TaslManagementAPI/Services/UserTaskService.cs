@@ -22,10 +22,10 @@ namespace TaslManagementAPI.Services
         public async Task<UserTaskDto> GetTaskByIdAsync(int id)
         {
             var task = await _userTaskRepository.GetTaskByIdAsync(id);
-            if (task == null) return null;
+            if (task == null)  new Exception("The task not exists!"); 
 
             if (task.UserId != _userService.UserId &&! _userService.IsUserAdmin)
-                throw new UnauthorizedAccessException("You do not have permission to access this task.");
+                throw new UnauthorizedAccessException("You do not have permission to access this task!");
 
 
             return new UserTaskDto

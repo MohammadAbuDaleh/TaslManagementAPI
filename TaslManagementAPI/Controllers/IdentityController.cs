@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TaslManagementAPI.DTOs;
 using TaslManagementAPI.Models;
+using TaslManagementAPI.Utilities;
 
 namespace TaslManagementAPI.Controllers
 {
@@ -21,7 +22,7 @@ namespace TaslManagementAPI.Controllers
         }
 
         [HttpPost("AssignRole")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = RolesConstants.Admin)]
         public async Task<IActionResult> AssignRole([FromBody] AssignRoleDto model)
         {
             var user = await _userManager.FindByNameAsync(model.Username);
@@ -44,7 +45,7 @@ namespace TaslManagementAPI.Controllers
             return BadRequest("Failed to assign role.");
         }
         [HttpPost("RemoveRole")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = RolesConstants.Admin)]
         public async Task<IActionResult> RemoveRole([FromBody] AssignRoleDto model)
         {
             var user = await _userManager.FindByNameAsync(model.Username);
@@ -62,7 +63,7 @@ namespace TaslManagementAPI.Controllers
             return BadRequest("Failed to remove role.");
         }
         [HttpGet("GetUserRoles/{username}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = RolesConstants.Admin)]
         public async Task<IActionResult> GetUserRoles(string username)
         {
             var user = await _userManager.FindByNameAsync(username);
